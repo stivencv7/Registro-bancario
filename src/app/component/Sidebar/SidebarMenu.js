@@ -43,7 +43,7 @@ export const SidebarMenu = ({ label, id }) => {
                 </div>
             </Sidebar>
 
-            <button onClick={() => setVisible(true)}><IoSettings className="rollingButton" style={{ fontSize: '30px' }} /></button>
+            <button onClick={() => setVisible(true)}><IoSettings className="rollingButton text-[30px]"  /></button>
         </div>
     )
 }

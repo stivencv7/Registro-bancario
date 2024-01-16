@@ -14,8 +14,8 @@ import webSocketService from './app/service/WebSocketService/WebSocketService';
 import { useEffect, useState } from 'react';
 import AuthService from './app/service/Login/LoginService';
 import { ToastContainer, toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
-import sweealert from 'sweetalert2'
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 function App() {
@@ -58,7 +58,7 @@ function App() {
 
      
 
-      <div style="w-full">
+      <div className="w-full">
 
 
         <Routes>

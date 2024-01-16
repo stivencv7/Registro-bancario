@@ -127,7 +127,7 @@ export const TableUser = () => {
                 </section>
 
                 <section className='card body bg-red-700 '>
-                    <table className='table table-dark table-hover font-bold' style={{ textAlign: 'center' }} >
+                    <table className='table table-dark table-hover font-bold text-center'>
                         <thead>
                             <tr>
                                 <th>id</th>

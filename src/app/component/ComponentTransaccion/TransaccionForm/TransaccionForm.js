@@ -146,7 +146,7 @@ export const TransactionForm = () => {
                     }
                     <div>
                         <input className="form-control" type="number" placeholder="Enter a monto" value={monto}
-                            onChange={(e) => setAmount(e.target.value)}
+                            onChange={(e) => setAmount(e.target.value)} 
                         />
                     </div>
                     <button className="btn btn-primary">

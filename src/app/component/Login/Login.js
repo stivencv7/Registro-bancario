@@ -55,7 +55,7 @@ export const Login = ({ onLoginSuccess }) => {
                     <input className='form-control max-sm:h-[50px]' type='password' name='password' value={password} onChange={handleContraseñaChange} placeholder='password'></input>
                 </div>
                 <div>
-                    <button className='btn btn-primary w-full max-sm:h-[50px]' type='button' onClick={handleLogin}>Iniciar sesión</button>
+                    <button className='bg-blue-600 h-[35px] rounded-2 w-full max-sm:h-[50px]' type='button' onClick={handleLogin}>Iniciar sesión</button>
                 </div>
             </form>
 

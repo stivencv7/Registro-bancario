@@ -58,7 +58,7 @@ function App() {
 
      
 
-      <div style={{ width: '100%' }}>
+      <div style="w-full">
 
 
         <Routes>

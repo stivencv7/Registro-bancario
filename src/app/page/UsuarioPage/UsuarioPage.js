@@ -4,7 +4,7 @@ import { TransactionForm } from '../../component/ComponentTransaccion/Transaccio
 export const UsuarioPage = () => {
 
   return (
-    <div>
+    <div >
       <TransactionForm></TransactionForm>
     </div>
   )

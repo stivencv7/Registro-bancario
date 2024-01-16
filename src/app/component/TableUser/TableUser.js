@@ -115,8 +115,8 @@ export const TableUser = () => {
     };
 
     return (
-        <main className='div-main' >
-            <div className='card size' >
+        <main className='div-main max-sm:w-full ' >
+            <div className='card size max-sm:w-full' >
                 <section className='card-header flex bg-black  items-center gap-[20px] w-auto'>
                     <div>
                         <DialogMultiparFile actualizarUsuarios={fetchData} stile='btn link-li'></DialogMultiparFile>
@@ -126,8 +126,8 @@ export const TableUser = () => {
                     </div>
                 </section>
 
-                <section className='card body bg-red-700 '>
-                    <table className='table table-dark table-hover font-bold text-center'>
+                <section className='card body table-responsive-sm'>
+                    <table className='table table-dark table-hover max-sm:table-sm  font-bold text-center max-sm:w-full flex-wrap'>
                         <thead>
                             <tr>
                                 <th>id</th>

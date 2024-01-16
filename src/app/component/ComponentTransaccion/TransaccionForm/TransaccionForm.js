@@ -122,13 +122,15 @@ export const TransactionForm = () => {
     };
 
     return (
-        <div className='page-login min-h-screen py-4 flex gap-[30px] justify-around'>
-           
-            <SidebarMenu id={usuario.id} />
-            <div className='shadow-2xl shadow-black bg-black h-[26em]  w-[20%] flex justify-center items-center bg-opacity-50 flex-col rounded-md relative '>
-                <button onClick={() => { visible ? setVisible(false) : setVisible(true) }} className=" bg-gray-800  absolute  w-1/1  text-white px-2 py-1 rounded-lg top-0 left-[25px]">{visible ? 'Pasar a compra y venta' : 'Tranferir a cuenta'}</button>
+        <div className='page-login min-h-screen  py-[30px] max-sm:py-0 max-sm:px-2 flex max-sm:flex-col  max-sm:justify-start  gap-[30px] justify-around max-sm:w-full max-sm:px  max-sm:relative'>
+            <div className="max-sm:absolute max-sm:right-11 top-2 z-50">
+                <SidebarMenu id={usuario.id} /> 
+            </div>
+            
+            <div className='max-sm:px-4 shadow-2xl shadow-black bg-black h-[26em]  w-[20%] flex justify-center max-sm:ite items-center bg-opacity-50 flex-col rounded-md relative  max-sm:w-full '>
+                <button onClick={() => { visible ? setVisible(false) : setVisible(true) }} className="max-sm:mt-3 bg-gray-800  absolute  w-1/1  text-white px-2 py-1 rounded-lg top-0 left-[25px]">{visible ? 'Pasar a compra y venta' : 'Tranferir a cuenta'}</button>
                 <Balance usuario={usuario} monto={monto} />
-                <form className="flex flex-col gap-[20px]"  onSubmit={handleSubmit}>
+                <form className="flex flex-col gap-[20px] max-sm:w-full"  onSubmit={handleSubmit}>
                     <div>
                         <input className="form-control" type="text" placeholder="Enter a Description" value={description}
                             onChange={(e) => setDescription(e.target.value)}
@@ -154,7 +156,7 @@ export const TransactionForm = () => {
                     </button>
                 </form>
             </div>
-            <div className="w-[50%]">
+            <div className="w-[50%] max-sm:w-full">
                 <TablaHistorial historial={historial} />
             </div>
             {/* <ToastContainer/> */}

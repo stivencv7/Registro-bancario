@@ -3,7 +3,7 @@ import React from 'react'
 export const Balance = ({ usuario,monto }) => {
 
     return (
-        <div>
+        <div className='max-sm:flex max-sm:flex-col max-sm:w-full '>
 
             <div className='gap-20 text-white font-bold flex justify-between'>
                 <div className='text-start'>

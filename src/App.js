@@ -50,7 +50,7 @@ function App() {
 
   return (
    
-    <div className="flex" >
+    <>
 
       <ToastContainer>
       {toast.warning(message)}
@@ -58,7 +58,7 @@ function App() {
 
      
 
-      <div className="w-full">
+      <div className="w-full max-sm:h-[100vh] ">
 
 
         <Routes>
@@ -82,7 +82,7 @@ function App() {
 
       </div>
      
-    </div >
+    </>
   );
 }
 

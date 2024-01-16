@@ -40,16 +40,16 @@ export const FormRegisterUser = () => {
     },
     //Configuaracion de los mensajes de error
     validationSchema: Yup.object({
-      nombre: Yup.string().required('El nombre es obligatorio'),
-      apellido: Yup.string().required('El apellido es obligatorio'),
-      telefono: Yup.string().length(10, 'Verifique el numero').required('El telefono es obligatorio'),
-      correo: Yup.string().email('Ingrese un correo valido').required('El correo es obligatorio'),
-      contrasenia: Yup.string().required('La contraseña es obligatoria')
+      nombre: Yup.string().required('Campo obligatorio'),
+      apellido: Yup.string().required('Campo obligatorio'),
+      telefono: Yup.string().length(10, 'Verifique el numero').required('Campo obligatorio'),
+      correo: Yup.string().email('Ingrese un correo valido').required('Campo obligatorio'),
+      contrasenia: Yup.string().required('Campo obligatorio')
         .matches(
           /^[a-zA-Z\d]{4,8}$/,
           'entre 4 a 8 caracteres'
         ),
-      saldo: Yup.number().positive('El saldo debe ser unumero positivo ').required('el sado es obligatorio'),
+      saldo: Yup.number().positive('El saldo debe ser numero positivo ').required('Campo obligatorio'),
     }),
 
   });
@@ -135,12 +135,12 @@ export const FormRegisterUser = () => {
   }, [])
 
   return (
-    <main className='div-main ' >
-      <form className='flex flex-col gap-[25px] w-[50%] h-[90vh]  bg-black  bg-opacity-50 p-2 rounded-xl' onSubmit={handleSubmit}>
+    <main className='div-main max-sm:w-full max-sm:items-start max-sm:pt-0 max-sm: max-sm:h-full ' >
+      <form className='flex flex-col max-sm:gap-[20px] gap-[25px] w-[50%] h-[90vh]  bg-black  bg-opacity-50 p-2 rounded-xl max-sm:rounded-[0px] max-sm:w-full max-sm:h-full' onSubmit={handleSubmit}>
 
         {id ? <div><h2 className='text-white flex items-center gap-[5px]'><FaRegUserCircle />Actualiza información</h2></div> : <div> <h2 className='text-white flex items-center gap-[5px] '><FaRegUserCircle /> Informacion Personal</h2></div>}
 
-        <section className='flex gap-[50px] w-full'>
+        <section className='flex max-sm:flex-col max-sm:gap-[30px] gap-[50px] w-full'>
           <div className='relative w-[100%] '>
 
             <input className='form-control input' type="text" name='nombre' onChange={formik.handleChange} value={formik.values.nombre} onBlur={formik.handleBlur} placeholder='Nombre' required />
@@ -153,7 +153,7 @@ export const FormRegisterUser = () => {
           </div>
         </section>
 
-        <section className='flex gap-[50px] w-full'>
+        <section className='flex max-sm:flex-col max-sm:gap-[30px] gap-[50px] w-full'>
 
           <div className='relative w-[100%]'>
 
@@ -172,7 +172,7 @@ export const FormRegisterUser = () => {
           <h2 className='text-white flex items-center gap-[5px]'><RiLockPasswordLine /> Seguridad</h2>
         </div>
 
-        <section className='flex gap-[50px] w-full'>
+        <section className='flex max-sm:flex-col max-sm:gap-[30px] gap-[50px] w-full'>
 
           <div className='relative w-[100%]'>
             <input placeholder='Contraseña' className='form-control input' type="password" name='contrasenia' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.contrasenia} required />
@@ -190,7 +190,7 @@ export const FormRegisterUser = () => {
           <h2 className='text-white flex items-center gap-[5px]'><FaRegCreditCard /> Información Cuenta</h2>
         </div>
 
-        <section className='flex gap-[50px] w-full'>
+        <section className='flex max-sm:flex-col max-sm:gap-[30px] gap-[50px] w-full'>
 
           <div className='relative w-[100%]'>
             <input placeholder='Nombre-titular' className='form-control input' type="text" name='nombre' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.nombre} disabled required />
@@ -204,7 +204,7 @@ export const FormRegisterUser = () => {
 
         </section>
 
-        <div className='btn-registrar'>
+        <div className='btn-registrar pb-20'>
           {id ? <button className='btn btn-primary  w-[100%]' type="submit">Actualizar</button>
             : <button  className='btn btn-primary w-[100%]' type="submit" disabled={!formik.isValid || statusRegister}>Registrar</button>
           }

@@ -24,7 +24,7 @@ export const SidebarMenu = ({ label, id }) => {
     }, [])
 
     return (
-        <div>
+        <>
             <Sidebar visible={visible} onHide={() => setVisible(false)} className='bg-[#000000a9]'>
                 <div className='flex items-center justify-center flex-col gap-3 bg-red'>
                     {rol == 'ROLE_ADMIN' ?
@@ -44,6 +44,6 @@ export const SidebarMenu = ({ label, id }) => {
             </Sidebar>
 
             <button onClick={() => setVisible(true)}><IoSettings className="rollingButton text-[30px]"  /></button>
-        </div>
+        </>
     )
 }

@@ -17,7 +17,7 @@ class WebSocketService {
     this.audio = new Audio();
     this.audio.src = 'assets/sounds/n2.mp3';
 
-    const url="//localhost:8080/ws"
+    const url="//back-registro-bancario-production.up.railway.app/ws"
     const socket=new SockJS(url);
     this.stompClient=Stomp.over(socket)
     

@@ -10,6 +10,7 @@ import * as Yup from 'yup';
 import Usuario from '../../models/Usuario';
 import AuthService from '../../service/Login/LoginService';
 import { ToastContainer,toast } from 'react-toastify';
+import { Button } from '../../share/Button';
 
 /**
  * Componente FormRegisterUser.
@@ -136,7 +137,7 @@ export const FormRegisterUser = () => {
 
   return (
     <main className='div-main max-sm:w-full max-sm:items-start max-sm:pt-0 max-sm: max-sm:h-full ' >
-      <form className='flex flex-col max-sm:gap-[20px] gap-[25px] w-[50%] h-[90vh]  bg-black  bg-opacity-50 p-2 rounded-xl max-sm:rounded-[0px] max-sm:w-full max-sm:h-full' onSubmit={handleSubmit}>
+      <form className='flex flex-col max-sm:gap-[20px] gap-[25px] w-[50%] h-[90vh]  bg-gradient-to-br from-[#062863] to-[#00000046] to-[69%]  max-sm:items-center  p-2 rounded-xl max-sm:rounded-[0px] max-sm:w-full max-sm:h-full' onSubmit={handleSubmit}>
 
         {id ? <div><h2 className='text-white flex items-center gap-[5px]'><FaRegUserCircle />Actualiza información</h2></div> : <div> <h2 className='text-white flex items-center gap-[5px] '><FaRegUserCircle /> Informacion Personal</h2></div>}
 
@@ -203,10 +204,10 @@ export const FormRegisterUser = () => {
           </div>
 
         </section>
-
-        <div className='btn-registrar pb-20'>
-          {id ? <button className='btn btn-primary  w-[100%]' type="submit">Actualizar</button>
-            : <button  className='btn btn-primary w-[100%]' type="submit" disabled={!formik.isValid || statusRegister}>Registrar</button>
+       
+        <div className='btn-registrar pb-20 w-[70%] xl:mt-4 xl:ml-20  '>
+          {id ? <Button type="submit" text={'Actualizar'}/>
+            : <Button  type="submit" disabled={!formik.isValid || statusRegister} text={'Registrar'}/>
           }
         </div>
       </form>

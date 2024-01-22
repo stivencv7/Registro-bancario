@@ -1,10 +1,13 @@
  import axios from "axios";
  import { jwtDecode as jwt_decode } from "jwt-decode";
 import { userApi } from "../../api/UserApi";
+import { URL_API, URL_SOCKET } from "../../consts/variables";
 
 const AuthService = {
   
+  
   login: async (credentialData) => {
+    console.log('api ' +URL_API+' socke '+URL_SOCKET);
     try {
       const response = await userApi.post(`/login`, credentialData);
       

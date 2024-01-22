@@ -1,6 +1,7 @@
 import { Stomp } from '@stomp/stompjs';
 import {Subject} from 'rxjs'
 import SockJS from 'sockjs-client';
+import { REACT_APP_SOCKET_PORT, URL_SOCKET } from '../../consts/variables';
 
 class WebSocketService {
    
@@ -16,8 +17,9 @@ class WebSocketService {
 
     this.audio = new Audio();
     this.audio.src = 'assets/sounds/n2.mp3';
+    console.log("url "+ URL_SOCKET);
 
-    const url="//back-registro-bancario-production.up.railway.app/ws"
+    const url=`//${URL_SOCKET}/ws`
     const socket=new SockJS(url);
     this.stompClient=Stomp.over(socket)
     

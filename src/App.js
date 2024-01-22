@@ -15,6 +15,8 @@ import { useEffect, useState } from 'react';
 import AuthService from './app/service/Login/LoginService';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { TablaHistorial } from './app/component/TablaHistorial/TablaHistorial';
+import { HistorialPage } from './app/page/HistorialPage/HistorialPage';
 
 
 
@@ -71,6 +73,7 @@ function App() {
 
           <Route element={<ProtectedRoute />}>
             <Route path="/tabla" element={<TablaPage />} />
+            <Route path="/historial/:id?" element={<HistorialPage/>} />
           </Route>
 
           <Route element={<ProtectedRouteUser />}>

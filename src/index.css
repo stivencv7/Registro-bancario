@@ -12,12 +12,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-image: url('/src/app/assets/images/transac.webp');
   background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
   
     
 }
-
 
 .contenedor{
   position: absolute;

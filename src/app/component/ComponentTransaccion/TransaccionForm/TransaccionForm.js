@@ -9,7 +9,8 @@ import { SidebarMenu } from "../../Sidebar/SidebarMenu";
 import swal from 'sweetalert2'
 import WebSocketService from "../../../service/WebSocketService/WebSocketService";
 import webSocketService from "../../../service/WebSocketService/WebSocketService";
-import { ToastContainer,toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import { Button } from "../../../share/Button";
 
 export const TransactionForm = () => {
 
@@ -28,7 +29,7 @@ export const TransactionForm = () => {
             let historias = await getHistoria(id);
             setHistoria(historias);
         } catch (error) {
-            swal("", error+" 1", "error")
+            swal("", error + " 1", "error")
         }
     }
 
@@ -36,7 +37,7 @@ export const TransactionForm = () => {
         try {
             return await getUserEmail(username);
         } catch (error) {
-            swal("", error+" 2", "error")
+            swal("", error + " 2", "error")
         }
     }
 
@@ -63,8 +64,8 @@ export const TransactionForm = () => {
         })
 
         return () => {
-            
-         webSocketService.disconnect();
+
+            webSocketService.disconnect();
 
         };
     }, [])
@@ -73,11 +74,11 @@ export const TransactionForm = () => {
 
     const tranferencia = async () => {
         try {
-           await setTransaccion(usuario, numeroCuenta, monto);
+            await setTransaccion(usuario, numeroCuenta, monto);
             //retorna a al componente TableUser
             toast.success("Tranferencia exitosa")
         } catch (error) {
-            swal(error+" 5", "", "error")
+            swal(error + " 5", "", "error")
         }
     }
 
@@ -85,8 +86,8 @@ export const TransactionForm = () => {
 
         e.preventDefault();
         try {
-        
-            if (usuario?.numeroCuenta == numeroCuenta || description=='' || monto>usuario?.saldo) {
+
+            if (usuario?.numeroCuenta == numeroCuenta || description == '' || monto > usuario?.saldo) {
                 swal("ERROR", "Tranferencia no permitida", 'error')
             } else {
 
@@ -99,13 +100,13 @@ export const TransactionForm = () => {
                 setUsuario(user)
 
                 if (numeroCuenta && visible) {
-                    let u=await getUserTransaccion(numeroCuenta);
+                    let u = await getUserTransaccion(numeroCuenta);
                     tranferencia();
                     handleSendLengthP(numeroCuenta)
 
-                }else{
+                } else {
                     toast.success("Tranferencia exitosa");
-            
+
                 }
 
             }
@@ -122,41 +123,44 @@ export const TransactionForm = () => {
     };
 
     return (
-        <div className='page-login min-h-screen  py-[30px] max-sm:py-0 max-sm:px-2 flex max-sm:flex-col  max-sm:justify-start  gap-[30px] justify-around max-sm:w-full max-sm:px  max-sm:relative'>
+        <div className='page-login min-h-screen  py-[30px] max-sm:py-0 max-sm:px-2 flex max-sm:flex-col   max-sm:justify-start  gap-[30px] justify-around max-sm:w-full max-sm:px  max-sm:relative'>
             <div className="max-sm:absolute max-sm:right-11 top-2 z-50">
-                <SidebarMenu id={usuario.id} /> 
+                <SidebarMenu id={usuario.id} />
             </div>
-            
-            <div className='max-sm:px-4 shadow-2xl shadow-black bg-black h-[26em]  w-[20%] flex justify-center max-sm:ite items-center bg-opacity-50 flex-col rounded-md relative  max-sm:w-full '>
-                <button onClick={() => { visible ? setVisible(false) : setVisible(true) }} className="max-sm:mt-3 bg-gray-800  absolute  w-1/1  text-white px-2 py-1 rounded-lg top-0 left-[25px]">{visible ? 'Pasar a compra y venta' : 'Tranferir a cuenta'}</button>
+
+            <div className='max-sm:px-4 max-sm:h-full  shadow-2xl shadow-black bg-gradient-to-br   from-[#062863] to-[#00000046] to-[69%]  h-[26em]  w-[20%] flex justify-center  items-center bg-opacity-50 flex-col rounded-md relative  max-sm:w-full '>
+
+                <div className="absolute top-0 max-sm:bottom-[400px] w-[40%] ">
+                    <Button onClick={() => { visible ? setVisible(false) : setVisible(true) }} text={visible ? 'movimiento' : 'cuenta'} />
+                </div>
+
                 <Balance usuario={usuario} monto={monto} />
-                <form className="flex flex-col gap-[20px] max-sm:w-full"  onSubmit={handleSubmit}>
+
+                <form className="flex flex-col gap-[20px] max-sm:w-full" onSubmit={handleSubmit}>
                     <div>
                         <input className="form-control" type="text" placeholder="Enter a Description" value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         />
                     </div>
-                    {
-                        visible ?
-                            <div>
-                                <input placeholder='Numero Cuenta' className="form-control" type="number" value={numeroCuenta}
-                                    onChange={(e) => setNumeroCuetna(e.target.value)}
-                                />
-                            </div>
-                            :
-                            <></>
-                    }
+
                     <div>
                         <input className="form-control" type="number" placeholder="Enter a monto" value={monto}
-                            onChange={(e) => setAmount(e.target.value)} 
+                            onChange={(e) => setAmount(e.target.value)}
                         />
                     </div>
-                    <button className="btn btn-primary">
-                        Transacción
-                    </button>
+
+                    <div>
+                        <input cla placeholder={`# Cuenta ${visible ?' Habilitado':'Inhabilitado'}`} className={`form-control `} type="number" value={numeroCuenta} disabled={!visible}
+                            onChange={(e) => setNumeroCuetna(e.target.value)}
+                        />
+                    </div>
+                    <div className="max-sm:mt-6">
+                        <Button type={'submit'} text={"transacion"} />
+                    </div>
+
                 </form>
             </div>
-            <div className="w-[50%] max-sm:w-full">
+            <div className="w-[50%] max-sm:hidden ">
                 <TablaHistorial historial={historial} />
             </div>
             {/* <ToastContainer/> */}

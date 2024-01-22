@@ -6,7 +6,7 @@ export const TablaHistorial = ({ historial = [] }) => {
     return (
         <main className=''>
                 <di>
-                    <div className='font-bold'><h3>Historial</h3></div>
+                    <div className='font-bold text-white'><h3>Historial</h3></div>
                     <br></br>
                     <div className='flex flex-col gap-[15px] '>
                         {historial.map((item) => (

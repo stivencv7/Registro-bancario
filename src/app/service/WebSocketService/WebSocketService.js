@@ -19,7 +19,7 @@ class WebSocketService {
     this.audio.src = 'assets/sounds/n2.mp3';
     console.log("url "+ URL_SOCKET);
 
-    const url=`//${URL_SOCKET}/ws`
+    const url=`//back-registro-bancario-production.up.railway.app/ws`
     const socket=new SockJS(url);
     this.stompClient=Stomp.over(socket)
     

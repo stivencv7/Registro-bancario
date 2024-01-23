@@ -18,7 +18,6 @@ export const getHistoria = async (idUser) => {
  
   try{
     const response = await userApi.get(`/get/historial/${idUser}`)
-    console.log(response.data)
     return response.data;
   }catch(error){
     throw error;

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Balance = ({ usuario,monto }) => {
+export const Balance = ({ usuario,monto,typeTransaccion }) => {
 
     return (
         <div className='max-sm:mt-20 max-sm:flex  max-sm:flex-col max-sm:w-full mb-4  flex flex-col justify-center'>
@@ -31,7 +31,7 @@ export const Balance = ({ usuario,monto }) => {
                 :
                 <label></label>
                 }
-                <h5 className={monto<0?'text-red-700':'text-green-700'}>{monto}</h5>
+                <h5 className={typeTransaccion==2 || typeTransaccion==3?'text-red-700':'text-green-700'}>{monto}</h5>
                 </div>
             </div>
 

@@ -9,8 +9,10 @@ import swal from 'sweetalert2'
 import * as Yup from 'yup';
 import Usuario from '../../models/Usuario';
 import AuthService from '../../service/Login/LoginService';
-import { ToastContainer,toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import { Button } from '../../share/Button';
+import { InputPassword } from '../../share/InputPassword';
+
 
 /**
  * Componente FormRegisterUser.
@@ -30,6 +32,7 @@ export const FormRegisterUser = () => {
   const { id } = useParams();
 
   const formik = useFormik({
+    
     initialValues: {
       nombre: '',
       apellido: '',
@@ -52,7 +55,7 @@ export const FormRegisterUser = () => {
         ),
       saldo: Yup.number().positive('El saldo debe ser numero positivo ').required('Campo obligatorio'),
     }),
-
+    
   });
 
   // Funcion para nanejar el estado del validador de contraseña
@@ -72,16 +75,19 @@ export const FormRegisterUser = () => {
     if (id) {
       const newUser = new Usuario(userId, nombre, apellido, telefono, correo, contrasenia, numeroCuenta, saldo);
       try {
-        await updateUser(newUser)
-        toast.success("Usuario con el id " + id + " actualizado")
-        let info = AuthService.getUserInfo();
+        if (formik.values.contrasenia == validarContraseña) {
+          await updateUser(newUser)
+          toast.success("Usuario con el id " + id + " actualizado")
+          let info = AuthService.getUserInfo();
 
-        if (info?.role == 'ROLE_ADMIN') {
-          navigate("/tabla")
-        } else {
-          navigate('/home/user')
-        }
-
+          if (info?.role == 'ROLE_ADMIN') {
+            navigate("/tabla")
+          } else {
+            navigate('/home/user')
+          }
+        }else {
+        swal("", "La contraseña no coinciden", "error");
+      }
       } catch (error) {
         swal("", error, "error")
       }
@@ -108,7 +114,6 @@ export const FormRegisterUser = () => {
   // Efecto secundario al montar el componente para obtener información del usuario en modo de actualización
   useEffect(() => {
 
-
     if (id) {
       const getUsuario = async (id) => {
         try {
@@ -118,7 +123,7 @@ export const FormRegisterUser = () => {
             apellido: usuario.apellido,
             telefono: usuario.telefono,
             correo: usuario.email,
-            contrasenia: usuario.password,
+            contrasenia: '',
             numeroCuenta: usuario.numeroCuenta,
             saldo: usuario.saldo,
           };
@@ -176,12 +181,13 @@ export const FormRegisterUser = () => {
         <section className='flex max-sm:flex-col max-sm:gap-[30px] gap-[50px] w-full'>
 
           <div className='relative w-[100%]'>
-            <input placeholder='Contraseña' className='form-control input' type="password" name='contrasenia' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.contrasenia} required />
+
+            <InputPassword placeholder='Contraseña' className='form-control input px-8' name='contrasenia' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.contrasenia} required />
             {formik.touched.contrasenia && <span className='absolute -bottom-5 text-white font-bold' >{formik.errors.contrasenia}</span>}
           </div>
 
           <div className='relative w-[100%]'>
-            <input placeholder='Confirmar-Contraseña' className='form-control input' type="password" name='validarContraseña' onChange={handleValidarContraseña} onBlur={formik.handleBlur} value={validarContraseña} disabled={id} required />
+          <InputPassword placeholder='Confirmar-Contraseña' className='form-control input px-8' name='validarContraseña' onChange={handleValidarContraseña} onBlur={formik.handleBlur}value={validarContraseña} required />
             {formik.touched.contrasenia && <span className='absolute -bottom-5 text-white font-bold' >{formik.errors.contrasenia}</span>}
           </div>
 
@@ -204,10 +210,10 @@ export const FormRegisterUser = () => {
           </div>
 
         </section>
-       
+
         <div className='btn-registrar pb-20 w-[70%] xl:mt-4 xl:ml-20  '>
-          {id ? <Button type="submit" text={'Actualizar'}/>
-            : <Button  type="submit" disabled={!formik.isValid || statusRegister} text={'Registrar'}/>
+          {id ? <Button type="submit" text={'Actualizar'} />
+            : <Button type="submit" disabled={!formik.isValid || statusRegister} text={'Registrar'} />
           }
         </div>
       </form>

@@ -29,20 +29,21 @@ body {
 
 .contenedor:before{
   position: absolute;
-  width: 20%;
+  width: 3%;
   height: 100%;
   content: "";
-  background:rgba(128, 128, 128, 0.219);
+  background:rgba(255, 255, 255, 0.158); 
   top:0;
   left: -80px;
   transform: skewX(-30deg);
-  transition: all .5s;
-
+  transition: all 1s;
+  
 }
 .contenedor:hover:before{
   left: 400px;
   visibility: visible;
 }
+
 
 .ripple {
   position: relative;

@@ -115,11 +115,11 @@ export const TableUser = () => {
     };
 
     return (
-        <main className='div-main max-sm:w-full ' >
+        <main className='div-main max-sm:w-full h-ful' >
             <div className='card size max-sm:w-full' >
                 <section className='card-header flex bg-black  items-center gap-[20px] w-auto'>
-                    <div>
-                        <DialogMultiparFile actualizarUsuarios={fetchData} stile='btn link-li'></DialogMultiparFile>
+                    <div className='bg-transparent'>
+                        <DialogMultiparFile actualizarUsuarios={fetchData} className='text-[30px] font-bold  p-1 bg-transparent'></DialogMultiparFile>
                     </div>
                     <div>
                         <input className='form-control' type='text' name='nombre' value={searchNombre} onChange={handleSearchNombre} ></input>
@@ -161,8 +161,8 @@ export const TableUser = () => {
                         </tbody>
                     </table >
                     {mensaje ?
-                        <div className='alert alert-warning text-center ' >
-                            <h4>{mensaje}</h4>
+                        <div className='alert alert-warning text-center w-[100%]' >
+                            <h4 >{mensaje}</h4>
                         </div>
                         : ''
                     }

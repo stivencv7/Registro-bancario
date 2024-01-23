@@ -52,7 +52,7 @@ function App() {
 
   return (
    
-    <>
+    <div className='h-full'>
 
       <ToastContainer>
       {toast.warning(message)}
@@ -60,12 +60,13 @@ function App() {
 
      
 
-      <div className="w-full max-sm:h-[100vh] bg-gradient-to-tl from-[#062863] to-[#000000ab] to-[69%]">
+      <div className="w-full h-[100vh] bg-gradient-to-tl from-[#062863] to-[#000000ab] to-[69%]">
 
 
         <Routes>
           <Route element={<ProtectedRouteToken/>}>
           <Route path="/" element={<LoginPage />} />
+          <Route path="/historial/:id?" element={<HistorialPage/>} />
           </Route>
           <Route path='*' element={<>NOT FOUND</>} />
           <Route path="/form/:id?" element={<Formulario />} />
@@ -73,7 +74,7 @@ function App() {
 
           <Route element={<ProtectedRoute />}>
             <Route path="/tabla" element={<TablaPage />} />
-            <Route path="/historial/:id?" element={<HistorialPage/>} />
+            
           </Route>
 
           <Route element={<ProtectedRouteUser />}>
@@ -85,7 +86,7 @@ function App() {
 
       </div>
      
-    </>
+    </div>
   );
 }
 

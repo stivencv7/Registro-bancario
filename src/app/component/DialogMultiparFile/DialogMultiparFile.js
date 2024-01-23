@@ -2,12 +2,13 @@ import React,{useState} from 'react'
 import { Dialog } from 'primereact/dialog';
 import { cargaMasiva} from '../../service/ServiceUsuario/ServiceUsuario';
 import swal from 'sweetalert2'
+import { SiMicrosoftexcel } from "react-icons/si";
 
 /**
  * stile (string): Clase de estilo para personalizar la apariencia del botón.
  *actualizarUsuarios (función): Función para actualizar la lista de usuarios después de cargar el archivo.
  */
-export const DialogMultiparFile = ({stile,actualizarUsuarios}) => {
+export const DialogMultiparFile = ({className,actualizarUsuarios}) => {
     
     // Estado que controla la visibilidad del diálogo modal.
     const [visible, setVisible] = useState(false);    
@@ -56,10 +57,11 @@ export const DialogMultiparFile = ({stile,actualizarUsuarios}) => {
     }
 
     return (
-        <div className="card flex justify-content-center">
-            <button className={stile} onClick={() => setVisible(true)}>Registro Multiple</button>
-            <Dialog header="Header" visible={visible} className='w-[50vw] z-0' onHide={() => setVisible(false)}>
-                <input className='form-control' type='file' onChange={upload} accept='.xlsx'></input>
+        <div className="card flex justify-content-center bg-transparent">
+            <button className={className} onClick={() => setVisible(true)}><SiMicrosoftexcel className='text-[green]'/></button>
+            <Dialog header="Registro Multiple" visible={visible} className='w-[50vw] max-sm:w-full z-0 max-sm:mx-2' onHide={() => setVisible(false)}>
+                <br></br>
+                <input className='form-control ' type='file' onChange={upload} accept='.xlsx'></input>
             </Dialog>
         </div>
     )

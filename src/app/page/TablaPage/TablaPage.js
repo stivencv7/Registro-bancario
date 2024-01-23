@@ -5,8 +5,8 @@ import { SidebarMenu } from '../../component/Sidebar/SidebarMenu'
 
 export const TablaPage = () => {
     return (
-        <div className='flex gap-[60px] max-sm:flex-col max-sm:gap-0 '>
-            <div className='w-40 py-4 pl-[100px] max-sm:w-0 max-sm:pl-0'>
+        <div className='flex gap-[60px] max-sm:flex-col max-sm:gap-0 h-full'>
+            <div className='w-40 py-4 pl-[100px] max-sm:w-full max-sm:pl-0 max-sm:flex max-sm:justify-end max-sm:pr-11'>
             <SidebarMenu label={'menu'}/>
             </div>
             

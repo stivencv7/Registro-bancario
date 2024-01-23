@@ -26,7 +26,7 @@ export const SidebarMenu = ({ label, id }) => {
 
     return (
         <>
-            <Sidebar visible={visible} onHide={() => setVisible(false)} className='bg-[#68676785]'>
+            <Sidebar visible={visible} onHide={() => setVisible(false)} className='bg-[#232333]'>
                 <div className='flex items-center justify-center flex-col gap-3 bg-red'>
                     {rol == 'ROLE_ADMIN' ?
                         <Menu />

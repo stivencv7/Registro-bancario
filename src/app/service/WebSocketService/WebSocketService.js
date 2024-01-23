@@ -2,7 +2,7 @@ import { Stomp } from '@stomp/stompjs';
 import {Subject} from 'rxjs'
 import SockJS from 'sockjs-client';
 import { REACT_APP_SOCKET_PORT, URL_SOCKET } from '../../consts/variables';
-
+// back-registro-bancario-production.up.railway.app
 class WebSocketService {
    
     stompClient;

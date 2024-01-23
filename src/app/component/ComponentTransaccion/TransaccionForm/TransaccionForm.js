@@ -16,11 +16,11 @@ export const TransactionForm = () => {
 
     const [description, setDescription] = useState('')
     const [usuario, setUsuario] = useState(new Usuario())
-    const [monto, setAmount] = useState()
-    const [numeroCuenta, setNumeroCuetna] = useState()
+    const [monto, setAmount] = useState(null)
+    const [numeroCuenta, setNumeroCuetna] = useState(null)
     const [visible, setVisible] = useState()
-
     const [historial, setHistoria] = useState([])
+    const [typeTranfe, setTypeTranfe] = useState(0)
 
     //  const { sendLengthP, getMessage } = useWebSocket();
 
@@ -71,19 +71,17 @@ export const TransactionForm = () => {
     }, [])
 
 
+    const validarType = () => {
 
-    const tranferencia = async () => {
-        try {
-            await setTransaccion(usuario, numeroCuenta, monto);
-            //retorna a al componente TableUser
-            toast.success("Tranferencia exitosa")
-        } catch (error) {
-            swal(error + " 5", "", "error")
+        if (typeTranfe == 2 || typeTranfe == 3) {
+            return -monto;
         }
+
+        return monto
     }
 
-    const handleSubmit = async (e) => {
 
+    const handleSubmit = async (e) => {
         e.preventDefault();
         try {
 
@@ -91,22 +89,28 @@ export const TransactionForm = () => {
                 swal("ERROR", "Tranferencia no permitida", 'error')
             } else {
 
-                let historial = { descripcion: description, monto: monto }
-                await saveHistorial(usuario.id, historial);
-                getHistorial(usuario.id)
-                setAmount(0)
-                setDescription('')
-                let user = await getUsario(usuario?.username);
-                setUsuario(user)
-
-                if (numeroCuenta && visible) {
-                    let u = await getUserTransaccion(numeroCuenta);
-                    tranferencia();
-                    handleSendLengthP(numeroCuenta)
-
+                if (visible && !numeroCuenta) {
+                    toast.error("Ingrese el nummero de cuenta o desabilitalo")
                 } else {
-                    toast.success("Tranferencia exitosa");
 
+                    let newmonto = validarType()
+                    let historial = { descripcion: description, monto: newmonto }
+                    await saveHistorial(usuario.id, historial);
+                    getHistorial(usuario.id)
+                    // setAmount(0)
+                    // setDescription('')
+                    let user = await getUsario(usuario?.username);
+                    setUsuario(user)
+
+                    if (numeroCuenta && visible) {
+                        let u = await getUserTransaccion(numeroCuenta);
+                        tranferencia();
+                        handleSendLengthP(numeroCuenta)
+
+                    } else {
+                        toast.success("Tranferencia exitosa");
+
+                    }
                 }
 
             }
@@ -114,6 +118,29 @@ export const TransactionForm = () => {
             swal("ERROR", error, 'error')
         }
 
+        cleanFields();
+    }
+
+    const cleanFields = () => {
+        setTypeTranfe(0)
+        setAmount('')
+        setDescription('')
+        setNumeroCuetna('')
+        setVisible(false);
+
+    }
+
+    const tranferencia = async () => {
+
+        try {
+            let newMonto = validarType();
+            await setTransaccion(usuario, numeroCuenta, newMonto);
+            //retorna a al componente TableUser
+            toast.success("Tranferencia exitosa")
+
+        } catch (error) {
+            swal(error + " 5", "", "error")
+        }
     }
 
     const handleSendLengthP = (numeroCuenta) => {
@@ -122,6 +149,15 @@ export const TransactionForm = () => {
         WebSocketService.sendLengthP(numeroCuenta);
     };
 
+    const handleTypetranfe = (e) => {
+        if (e.target.value == 3) {
+            setVisible(true)
+        } else {
+            setVisible(false)
+        }
+        setTypeTranfe(e.target.value)
+
+    }
     return (
         <div className='page-login min-h-screen  py-[30px] max-sm:py-0 max-sm:px-2 flex max-sm:flex-col   max-sm:justify-start  gap-[30px] justify-around max-sm:w-full max-sm:px  max-sm:relative'>
             <div className="max-sm:absolute max-sm:right-11 top-2 z-50">
@@ -130,28 +166,38 @@ export const TransactionForm = () => {
 
             <div className='max-sm:px-4 max-sm:h-full  shadow-2xl shadow-black bg-gradient-to-br   from-[#062863] to-[#00000046] to-[69%]  h-[26em]  w-[20%] flex justify-center  items-center bg-opacity-50 flex-col rounded-md relative  max-sm:w-full '>
 
-                <div className="absolute top-0 max-sm:bottom-[400px] w-[40%] ">
+                {/* <div className="absolute top-0 max-sm:bottom-[400px] w-[40%] ">
                     <Button onClick={() => { visible ? setVisible(false) : setVisible(true) }} text={visible ? 'movimiento' : 'cuenta'} />
-                </div>
+                </div> */}
 
-                <Balance usuario={usuario} monto={monto} />
+                <Balance usuario={usuario} monto={monto} typeTransaccion={typeTranfe} />
 
                 <form className="flex flex-col gap-[20px] max-sm:w-full" onSubmit={handleSubmit}>
+
+                    <div  >
+                        <select className="w-full h-9 rounded-2" value={typeTranfe} onChange={handleTypetranfe} >
+                            <option selected>Tipo de tranferencia</option>
+                            <option value={1}>Venta</option>
+                            <option value={2}>Compra</option>
+                            <option value={3}>Tranferencia</option>
+                        </select>
+                    </div>
+
                     <div>
                         <input className="form-control" type="text" placeholder="Enter a Description" value={description}
-                            onChange={(e) => setDescription(e.target.value)}
+                            onChange={(e) => setDescription(e.target.value)} disabled={!typeTranfe}
                         />
                     </div>
 
                     <div>
-                        <input className="form-control" type="number" placeholder="Enter a monto" value={monto}
-                            onChange={(e) => setAmount(e.target.value)}
+                        <input className="form-control" type="number" placeholder="Enter a monto" value={monto} disabled={!typeTranfe}
+                            onChange={(e) => setAmount(e.target.value)} min={1}
                         />
                     </div>
 
                     <div>
-                        <input cla placeholder={`# Cuenta ${visible ?' Habilitado':'Inhabilitado'}`} className={`form-control `} type="number" value={numeroCuenta} disabled={!visible}
-                            onChange={(e) => setNumeroCuetna(e.target.value)}
+                        <input cla placeholder={`# Cuenta ${visible ? ' Habilitado' : 'Inhabilitado'}`} className={`form-control `} type="number" value={numeroCuenta} disabled={!visible}
+                            onChange={(e) => setNumeroCuetna(e.target.value)} min={1} 
                         />
                     </div>
                     <div className="max-sm:mt-6">

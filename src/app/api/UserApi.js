@@ -3,7 +3,7 @@ import { URL_API} from "../consts/variables";
 // https://back-registro-bancario-production.up.railway.app/api
 export const userApi = axios.create({
 
-  baseURL:'http://back-registro-bancario-production.up.railway.app/api',
+  baseURL:'https://back-registro-bancario-production.up.railway.app/api',
   headers: {
     'Content-Type': 'application/json',
   },

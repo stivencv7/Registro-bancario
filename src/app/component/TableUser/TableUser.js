@@ -23,7 +23,6 @@ export const TableUser = () => {
     const [searchNombre, setSearchNombre] = useState('');
     const [mensaje, setMensaje] = useState('');
 
-
     let navigate = useNavigate();
 
     // Función para obtener y actualizar la lista de usuarios
@@ -64,7 +63,7 @@ export const TableUser = () => {
     // Obtener la lista de usuarios al cargar el componente
     useEffect(() => {
 
-        webSocketService.connect()
+        // webSocketService.connect()
 
         fetchData();
 
@@ -81,11 +80,11 @@ export const TableUser = () => {
            fetchData();
         })
 
-        return () => {
-            // Desconectar el WebSocket cuando el componente se desmonta
-            webSocketService.disconnect();
+        // return () => {
+        //     // Desconectar el WebSocket cuando el componente se desmonta
+        //     webSocketService.disconnect();
 
-        };
+        // };
 
     }, [])
 

@@ -63,6 +63,7 @@ export const getUserEmail = async (email) => {
 //enpoid que registra usuario
 export const createUser = async (userData) => {
   try {
+    console.log(userData);
     const response = await userApi.post(`/add`, userData);
     return new Usuario(response.data.id, response.data.name, response.data.email);
   } catch (error) {

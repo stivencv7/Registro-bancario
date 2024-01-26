@@ -16,9 +16,9 @@ export const TransactionForm = () => {
 
     const [description, setDescription] = useState('')
     const [usuario, setUsuario] = useState(new Usuario())
-    const [monto, setAmount] = useState(null)
-    const [numeroCuenta, setNumeroCuetna] = useState(null)
-    const [visible, setVisible] = useState()
+    const [monto, setAmount] = useState('')
+    const [numeroCuenta, setNumeroCuetna] = useState('')
+    const [visible, setVisible] = useState(false)
     const [historial, setHistoria] = useState([])
     const [typeTranfe, setTypeTranfe] = useState(0)
 
@@ -43,7 +43,7 @@ export const TransactionForm = () => {
 
     useEffect(() => {
 
-        webSocketService.connect()
+        // webSocketService.connect()
 
         const buscarUsuario = async () => {
 
@@ -59,15 +59,16 @@ export const TransactionForm = () => {
         buscarUsuario();
 
         webSocketService.messagesSubject.asObservable().subscribe(m => {
+            console.log("mensaje en formulario= "+m)
             buscarUsuario()
 
         })
 
-        return () => {
+        // return () => {
 
-            webSocketService.disconnect();
+        //     webSocketService.disconnect();
 
-        };
+        // };
     }, [])
 
 
@@ -85,7 +86,7 @@ export const TransactionForm = () => {
         e.preventDefault();
         try {
 
-            if (usuario?.numeroCuenta == numeroCuenta || description == '' || monto > usuario?.saldo) {
+            if (usuario?.numeroCuenta == numeroCuenta || description == '' || (typeTranfe!=1 && monto > usuario?.saldo)) {
                 swal("ERROR", "Tranferencia no permitida", 'error')
             } else {
 
@@ -104,6 +105,7 @@ export const TransactionForm = () => {
 
                     if (numeroCuenta && visible) {
                         let u = await getUserTransaccion(numeroCuenta);
+                        alert(numeroCuenta)
                         tranferencia();
                         handleSendLengthP(numeroCuenta)
 
@@ -139,14 +141,14 @@ export const TransactionForm = () => {
             toast.success("Tranferencia exitosa")
 
         } catch (error) {
-            swal(error + " 5", "", "error")
+            swal(error + " 5","error")
         }
     }
 
     const handleSendLengthP = (numeroCuenta) => {
         setVisible(false)
         setNumeroCuetna()
-        WebSocketService.sendLengthP(numeroCuenta);
+        WebSocketService.sendLengthP(numeroCuenta,usuario);
     };
 
     const handleTypetranfe = (e) => {
@@ -191,13 +193,13 @@ export const TransactionForm = () => {
 
                     <div>
                         <input className="form-control" type="number" placeholder="Enter a monto" value={monto} disabled={!typeTranfe}
-                            onChange={(e) => setAmount(e.target.value)} min={1}
+                            onChange={(e) => setAmount(e.target.value)} min={1} 
                         />
                     </div>
 
                     <div>
                         <input cla placeholder={`# Cuenta ${visible ? ' Habilitado' : 'Inhabilitado'}`} className={`form-control `} type="number" value={numeroCuenta} disabled={!visible}
-                            onChange={(e) => setNumeroCuetna(e.target.value)} min={1} 
+                            onChange={(e) => setNumeroCuetna(e.target.value)}
                         />
                     </div>
                     <div className="max-sm:mt-6">

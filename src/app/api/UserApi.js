@@ -1,6 +1,7 @@
 import axios from "axios";
 import { URL_API} from "../consts/variables";
 // https://back-registro-bancario-production.up.railway.app/api
+//http://localhost:8080/api
 export const userApi = axios.create({
 
   baseURL:'https://back-registro-bancario-production.up.railway.app/api',

@@ -101,7 +101,13 @@ export const FormRegisterUser = () => {
         } catch (error) {
           swal("", error, "error")
         }
+        if(localStorage.getItem("token")){
         navigate("/tabla")
+
+        }else{
+          navigate("/")
+
+        }
       } else {
         setStatusRgister(false)
         swal("", "La contraseña no coinciden", "error");

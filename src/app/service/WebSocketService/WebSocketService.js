@@ -3,10 +3,11 @@ import {Subject} from 'rxjs'
 import SockJS from 'sockjs-client';
 import { REACT_APP_SOCKET_PORT, URL_SOCKET } from '../../consts/variables';
 // back-registro-bancario-production.up.railway.app
+//localhost:8080
 class WebSocketService {
    
-    stompClient;
-    messagesSubject=new Subject();
+  stompClient;
+  messagesSubject=new Subject();
  
 
   constructor() {
@@ -14,10 +15,6 @@ class WebSocketService {
   }
 
   connect() {
-
-    this.audio = new Audio();
-    this.audio.src = 'assets/sounds/n2.mp3';
-    console.log("url "+ URL_SOCKET);
 
     const url=`//back-registro-bancario-production.up.railway.app/ws`
     const socket=new SockJS(url);
@@ -32,13 +29,15 @@ class WebSocketService {
   }
 
   disconnect() {
-    if (this.stompClient) {
+    if (this.stompClient) {     
       this.stompClient.disconnect();
       console.log('Disconnected from WebSocket');
     }
   }
-  sendLengthP(numeroCuenta) {
-    this.stompClient.send('/app/length',{},JSON.stringify(numeroCuenta));
+  
+  sendLengthP(numeroCuenta,user) {
+    const message = {numeroCuenta:numeroCuenta,user:user};
+    this.stompClient.send('/app/length',{},JSON.stringify(message));
   }
 
   getLengthP() {

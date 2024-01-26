@@ -80,17 +80,17 @@ function App() {
       <Routes>
 
         <Route path='*' element={<>NOT FOUND</>} />
-        <Route path="/form/:id?" element={<Formulario />} />
-        <Route path="/home/user" element={<UsuarioPage />} />
+        <Route path="https://thriving-entremet-b01d40.netlify.app/form/:id?" element={<Formulario />} />
+        <Route path="https://thriving-entremet-b01d40.netlify.app/home/user" element={<UsuarioPage />} />
 
         <Route element={<ProtectedRouteToken />}>
           <Route path="/" element={<LoginPage />} />
-          <Route path="/historial/:id?" element={<HistorialPage />} />
+          <Route path="https://thriving-entremet-b01d40.netlify.app/historial/:id?" element={<HistorialPage />} />
         </Route>
 
 
         <Route element={<ProtectedRoute />}>
-          <Route path="/tabla" element={<TablaPage />} />
+          <Route path="https://thriving-entremet-b01d40.netlify.app/tabla" element={<TablaPage />} />
 
         </Route>
 

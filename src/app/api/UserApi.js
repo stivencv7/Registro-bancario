@@ -4,7 +4,7 @@ import { URL_API} from "../consts/variables";
 //http://localhost:8080/api
 export const userApi = axios.create({
 
-  baseURL:'https://back-registro-bancario-production.up.railway.app/api',
+  baseURL:'http://localhost:8080/api',
   headers: {
     'Content-Type': 'application/json',
   },

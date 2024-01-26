@@ -66,31 +66,31 @@ function App() {
   //     }
   //   } catch (error) {
   //     // Manejar errores aquí si es necesario
-  //   }
+  //   }w-full h-[100vh] bg-gradient-to-tl from-[#062863] to-[#000000ab] to-[69%]
   // };
 
   return (
 
 
 
-    <div className="w-full h-[100vh] bg-gradient-to-tl from-[#062863] to-[#000000ab] to-[69%]">
+    <div className="">
 
 
 
       <Routes>
 
         <Route path='*' element={<>NOT FOUND</>} />
-        <Route path="https://thriving-entremet-b01d40.netlify.app/form/:id?" element={<Formulario />} />
-        <Route path="https://thriving-entremet-b01d40.netlify.app/home/user" element={<UsuarioPage />} />
+        <Route path="/form/:id?" element={<Formulario />} />
+        <Route path="/home/user" element={<UsuarioPage />} />
 
         <Route element={<ProtectedRouteToken />}>
           <Route path="/" element={<LoginPage />} />
-          <Route path="https://thriving-entremet-b01d40.netlify.app/historial/:id?" element={<HistorialPage />} />
+          <Route path="/historial/:id?" element={<HistorialPage />} />
         </Route>
 
 
         <Route element={<ProtectedRoute />}>
-          <Route path="https://thriving-entremet-b01d40.netlify.app/tabla" element={<TablaPage />} />
+          <Route path="/tabla" element={<TablaPage />} />
 
         </Route>
 

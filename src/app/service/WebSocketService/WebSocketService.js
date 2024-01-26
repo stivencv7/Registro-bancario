@@ -16,7 +16,7 @@ class WebSocketService {
 
   connect() {
 
-    const url=`//back-registro-bancario-production.up.railway.app/ws`
+    const url=`//localhost:8080/ws`
     const socket=new SockJS(url);
     this.stompClient=Stomp.over(socket)
     

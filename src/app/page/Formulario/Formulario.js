@@ -20,7 +20,7 @@ export const Formulario = () => {
                 {token ?
                     <SidebarMenu />
                     :
-                   <Link to={'/'}><FaCircleArrowLeft className='text-[30px] text-[white]  z-50'/></Link> 
+                   <Link to={'/'}><FaCircleArrowLeft className='text-[30px] text-[#d00034]  z-50'/></Link> 
                 }
             </div>
             <FormRegisterUser />

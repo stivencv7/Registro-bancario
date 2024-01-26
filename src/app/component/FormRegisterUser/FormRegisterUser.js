@@ -148,19 +148,19 @@ export const FormRegisterUser = () => {
 
   return (
     <main className='div-main max-sm:w-full max-sm:items-start max-sm:pt-0 max-sm: max-sm:h-full ' >
-      <form className='flex flex-col max-sm:gap-[20px] gap-[25px] w-[50%] h-[90vh]  bg-gradient-to-br from-[#062863] to-[#00000046] to-[69%]  max-sm:items-center  p-2 rounded-xl max-sm:rounded-[0px] max-sm:w-full max-sm:h-full' onSubmit={handleSubmit}>
+      <form className='flex flex-col max-sm:gap-[20px] gap-[25px] w-[50%] h-[90vh]  bg-[#1a1a1a] shadow-shadowperf  max-sm:items-center  p-2 rounded-xl max-sm:rounded-[0px] max-sm:w-full max-sm:h-full' onSubmit={handleSubmit}>
 
         {id ? <div><h2 className='text-white flex items-center gap-[5px]'><FaRegUserCircle />Actualiza información</h2></div> : <div> <h2 className='text-white flex items-center gap-[5px] '><FaRegUserCircle /> Informacion Personal</h2></div>}
 
         <section className='flex max-sm:flex-col max-sm:gap-[30px] gap-[50px] w-full'>
           <div className='relative w-[100%] '>
 
-            <input className='form-control input' type="text" name='nombre' onChange={formik.handleChange} value={formik.values.nombre} onBlur={formik.handleBlur} placeholder='Nombre' required />
+            <input className='border-b-[1px] bg-transparent border-b-[#d00034] focus-visible:outline-none  flex h-[40px] w-full input' type="text" name='nombre' onChange={formik.handleChange} value={formik.values.nombre} onBlur={formik.handleBlur} placeholder='Nombre' required />
             {formik.touched.nombre && <span className='absolute text-white font-bold'>{formik.errors.nombre}</span>}
           </div>
 
           <div className='relative w-[100%]'>
-            <input className='form-control input' type="text" name='apellido' onChange={formik.handleChange} value={formik.values.apellido} onBlur={formik.handleBlur} placeholder='Apellido' required />
+            <input className='border-b-[1px] bg-transparent border-b-[#d00034] focus-visible:outline-none  flex h-[40px] w-full input' type="text" name='apellido' onChange={formik.handleChange} value={formik.values.apellido} onBlur={formik.handleBlur} placeholder='Apellido' required />
             {formik.touched.apellido && <span className='absolute  text-white font-bold'>{formik.errors.apellido}</span>}
           </div>
         </section>
@@ -169,12 +169,12 @@ export const FormRegisterUser = () => {
 
           <div className='relative w-[100%]'>
 
-            <input className='form-control input' type="number" name='telefono' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.telefono} placeholder='# Telefonico' minLength='7' maxLength='10' required />
+            <input className='border-b-[1px] bg-transparent border-b-[#d00034] focus-visible:outline-none  flex h-[40px] w-full input' type="number" name='telefono' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.telefono} placeholder='# Telefonico' minLength='7' maxLength='10' required />
             {formik.touched.telefono && <span className='absolute -bottom-[5.5] text-white font-bold' >{formik.errors.telefono}</span>}
           </div>
 
           <div className='relative w-[100%]'>
-            <input className='form-control input' type="email" name='correo' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.correo} placeholder='Correo' required />
+            <input className='border-b-[1px] bg-transparent border-b-[#d00034] focus-visible:outline-none  flex h-[40px] w-full input' type="email" name='correo' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.correo} placeholder='Correo' required />
             {formik.touched.correo && <span className='absolute -bottom-5 text-white font-bold' >{formik.errors.correo}</span>}
           </div>
 
@@ -188,12 +188,12 @@ export const FormRegisterUser = () => {
 
           <div className='relative w-[100%]'>
 
-            <InputPassword placeholder='Contraseña' className='form-control input px-8' name='contrasenia' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.contrasenia} required />
+            <InputPassword placeholder='Contraseña' className='border-b-[1px] bg-transparent border-b-[#d00034] focus-visible:outline-none  flex h-[40px] w-full px-8' name='contrasenia' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.contrasenia} required />
             {formik.touched.contrasenia && <span className='absolute -bottom-5 text-white font-bold' >{formik.errors.contrasenia}</span>}
           </div>
 
           <div className='relative w-[100%]'>
-          <InputPassword placeholder='Confirmar-Contraseña' className='form-control input px-8' name='validarContraseña' onChange={handleValidarContraseña} onBlur={formik.handleBlur}value={validarContraseña} required />
+          <InputPassword placeholder='Confirmar-Contraseña' className='border-b-[1px] bg-transparent border-b-[#d00034] focus-visible:outline-none  flex h-[40px] w-full px-8' name='validarContraseña' onChange={handleValidarContraseña} onBlur={formik.handleBlur}value={validarContraseña} required />
             {formik.touched.contrasenia && <span className='absolute -bottom-5 text-white font-bold' >{formik.errors.contrasenia}</span>}
           </div>
 
@@ -206,12 +206,12 @@ export const FormRegisterUser = () => {
         <section className='flex max-sm:flex-col max-sm:gap-[30px] gap-[50px] w-full'>
 
           <div className='relative w-[100%]'>
-            <input placeholder='Nombre-titular' className='form-control input' type="text" name='nombre' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.nombre} disabled required />
+            <input placeholder='Nombre-titular' className='border-b-[1px] bg-transparent border-b-[#d00034] focus-visible:outline-none  flex h-[40px] w-full input' type="text" name='nombre' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.nombre} disabled required />
             {formik.touched.nombre && <span className='absolute -bottom-5 text-white font-bold' >{formik.errors.nombre}</span>}
           </div>
 
           <div className='relative w-[100%]'>
-            <input placeholder='Saldo' className='form-control input' type="number" name='saldo' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.saldo} required />
+            <input placeholder='Saldo' className='border-b-[1px] bg-transparent border-b-[#d00034] focus-visible:outline-none  flex h-[40px] w-full input' type="number" name='saldo' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.saldo} required />
             {formik.touched.saldo && <span className='absolute -bottom-5 text-white font-bold'>{formik.errors.saldo}</span>}
           </div>
 
